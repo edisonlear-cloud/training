@@ -17,7 +17,7 @@ config t
    Int Vlan 1
      no shutdown
 	 ip add 10.81.1.2 255.255.255.0
-	 description MGMTDATA					
+	 description MGMTDATA
    Int Vlan 10
      no shutdown
 	 ip add 10.81.10.2 255.255.255.0
@@ -172,10 +172,10 @@ config t
 ip routing
 ip dhcp pool CAMERA6
 host 10.81.50.6 255.255.255.0
-client-identifier 001a.0706.c2f7
+client-identifier 001a.0704.7f5b
 ip dhcp pool CAMERA8
 host 10.81.50.8 255.255.255.0
-client-identifier 001a.0709.c26b 
+client-identifier 001a.0709.c258 
 end
 show ip dhcp binding
 
@@ -246,16 +246,16 @@ ephone-dn 7
 ephone-dn 8
   number 8188
  ephone-dn 9
-   number 8125
+   number 8199
 ephone-dn 10
- number 8167
+ number 8198
 Ephone 1
-  Mac-address 6cfa.8972.f0a9
+  Mac-address cafe.face.baba
   type 8945
-  button 1:8 2:7 3:6 4:10
+  button 1:8 2:7 3:6 4:5
   restart
 Ephone 2
-  Mac-address ccd8.c1fb.10dd
+  Mac-address fafa.caca.baba
   type 8945
   button 1:4 2:3 3:2 4:1
   restart  
@@ -288,10 +288,10 @@ configure terminal
  destination-pattern 11..
  session target ipv4:10.11.100.8
  codec g711ULAW
-  dial-peer voice 12 Voip
-  destination-pattern 12..
-  session target ipv4:10.12.100.8
-  codec g711ULAW
+  !dial-peer voice 12 Voip
+  !destination-pattern 12..
+  !session target ipv4:10.12.100.8
+  !codec g711ULAW
 dial-peer voice 21 Voip
  destination-pattern 21..
  session target ipv4:10.21.100.8
@@ -300,10 +300,10 @@ dial-peer voice 22 Voip
  destination-pattern 22..
  session target ipv4:10.22.100.8
  codec g711ULAW
-!dial-peer voice 81 Voip
- !destination-pattern 81..
- !session target ipv4:10.81.100.8
- !codec g711ULAW
+dial-peer voice 31 Voip
+ destination-pattern 31..
+ session target ipv4:10.31.100.8
+ codec g711ULAW
 dial-peer voice 32 Voip
  destination-pattern 32..
  session target ipv4:10.32.100.8
@@ -448,7 +448,7 @@ conf t
  NO ip route 10.81.0.0 255.255.0.0 200.0.0.81
  ip route 10.21.0.0 255.255.0.0 200.0.0.21
  ip route 10.22.0.0 255.255.0.0 200.0.0.22
- ip route 10.81.0.0 255.255.0.0 200.0.0.81
+ ip route 10.31.0.0 255.255.0.0 200.0.0.31
  ip route 10.32.0.0 255.255.0.0 200.0.0.32
  ip route 10.41.0.0 255.255.0.0 200.0.0.41
  ip route 10.42.0.0 255.255.0.0 200.0.0.42
@@ -549,7 +549,7 @@ OPEN CMD                 DNS
 5. ping 200.0.0.K
 6. ping 10.21.1.10
    ping 10.22.1.10
-   ping 10.81.1.10
+   ping 10.31.1.10
    ping 10.32.1.10
    ping 10.41.1.10
    ping 10.42.1.10
@@ -646,7 +646,7 @@ conf t
    name 8172
 !
   voice register pool 1
-    id mac 7609.267d.9d5b
+    id mac ____.____.____
     number 1 dn 1
     dtmf-relay sip-notify
     username 8171 password 8171
