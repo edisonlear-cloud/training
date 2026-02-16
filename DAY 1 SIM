@@ -1,0 +1,111 @@
+1. Configure D1 and D2 as DHCP Server for Vlan 10
+	D1: 100-199
+	D2: 200-254
+!@D1
+
+conf t
+	ip dhcp excluded-address 10.2.1.1 10.2.1.99
+	ip dhcp excluded-address 10.2.1.200 10.2.1.254
+	ip dhcp pool Vlan10
+	network 10.2.1.0 255.255.255.0
+	default-router 10.2.1.1
+	dns-server 10.2.1.1
+	domain-name D1.com
+
+	ip dhcp pool Vlan20
+	network 10.2.2.0 255.255.255.0
+	default-router 10.2.2.1
+	dns-server 10.2.2.1
+	domain-name DNS.com
+	
+	ip dhcp pool Vlan100
+	network 192.168.1.0 255.255.255.0
+	default-router 192.168.1.129
+	dns-server 192.168.1.129
+	domain-name SERVER.COM
+
+end
+
+~~change Vlan100
+conf t
+	int e1/0
+	switchport mode access
+	switchport access vlan 100
+	sh
+	no shu
+end
+
+
+
+!@D2
+
+conf t
+	ip dhcp excluded-address 10.2.1.1 10.2.1.199
+	ip dhcp pool Vlan10
+	network 10.2.1.0 255.255.255.0
+	default-router 10.2.1.2
+	dns-server 10.2.1.2
+	domain-name D2.com
+	ip dhcp pool Vlan20
+	network 10.2.2.0 255.255.255.0
+	default-router 10.2.2.2
+	dns-server 10.2.2.2
+	domain-name DNS.com	
+	ip dhcp pool Vlan100
+	network 192.168.1.0 255.255.255.0
+	default-router 192.168.1.130
+	dns-server 192.168.1.130
+	domain-name SERVER.COM
+end
+
+~~change Vlan20
+conf t
+	int e1/0
+	switchport mode access
+	switchport access vlan 20
+	sh
+	no shu
+end
+
+	
+	
+
+2. Configure P1 & P2 as DHCP Clients for their VLANs
+
+!@P1
+conf t
+	int e0/0
+	ip address dhcp
+	no shu
+end
+
+!@P2
+conf t
+	int e1/0
+	ip address dhcp
+	no shu
+end
+
+~~change internet to Vlan 10
+!@A1
+conf t
+	int e0/0
+	switchport mode access
+	switchport access vlan 10
+	no sh
+end
+
+!@A2
+conf t
+	int e1/0
+	switchport mode access
+	switchport access vlan 10
+	no sh
+end
+
+!@S2
+conf t
+	int e1/0
+	ip address dhcp
+	no shu
+end
