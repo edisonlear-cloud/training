@@ -1,0 +1,264 @@
+	Decimal	IPv4		IPv6
+	1999	1.255.255.255	:1FFF:
+	2000	2.0.0.0		:2000:
+	2001	2.0.0.1		:2001:
+	6789	6.7.254.255	:67ef:
+	6790	6.7.255.0	:67f0:
+
+1. Design an IPv6 network for 2400 users using the available IPv6 address space of 2001:db8:b:efe:1::/64
+C:2400 = 12bits
+S:/128-/12 = /116
+I:(8,1,1i)
+N:2001:db8:b:efe:1:1000:/116
+1st:2001:db8:b:efe:1:1001:/116
+last:2001:db8:b:efe:1:1f7f:/116
+N1:2001:db8:b:efe:1:2000:/116
+
+2. Design an IPv6 network for 79 users using the available IPv6 address space of 2001:db8::/64
+C:79users = 7bits
+S:/128-/7 = /121
+I:(8,3,8i)
+N:
+2001:db8::80/121
+1st:
+2001:db8::81/121
+last:
+2001:db8::ff/121
+N1:
+2001:db8:::100/121
+
+
+2. Design an IPv6 network for 128 department using the available IPv6 address space of 2001:db9:2:5::/55
+C:7
+A:55+7 =/62
+I:(4,4,4i
+N1:2001:db9:2:4::/55
+N2:2001:db9:2:8::/55
+N3:2001:db9:2:C::/55
+N3:2001:db9:3::/55
+
+
+
+
+
+7.APPLICATION,IP PHONE,RTP Player
+6.CODEC,G711,G729
+5.RTP
+4.TFTP
+3.DHCP,IP ADD
+2.SVI,MAC ADD
+Data link
+	CSMA-wired
+	CA- wireless
+1. POE 802.3af,802,3at,802.3bt
+V-Voltage
+I-Interface
+T-Transmission
+	Electric(UTP)
+	Laser(Fiber
+	RF(Wireless)
+Bits - PDU
+
+
+
+!@terminal
+sudo su
+	>kali
+yersinia -G
+
+
+"day1 coretaas
+	-28,000 cut 
+	-24,000 goods
+
+corebaba
+M pc mac - CDDA
+corebaba f0/1- .b301
+Vlan1 -	.b340
+
+edge:
+PC mac - CDDA
+g0/0/0 - 7b20
+	
+
+SSH config
+!@baba
+conf t
+	ip domain name ccna.com
+	crypto key generate rsa modulus 2048 label key
+	ip ssh rsa keypair-name key
+	ip ssh version 2
+	!
+	line vty 0 14
+	login local
+	exit
+	username admin priv 15 secret pass
+	end
+
+VMware
+double click
+CSR100V.ova	: utp-ph
+CSR100V.ova 	: utp-jp
+yVM.ova 	: BLDG-jp
+NetOps.ovf	: NetOps-PH
+
+UTM-PH				NetOPS-PH
+NetAdapters	: NAT		VMNet1
+NetAdapters 2	: VMNet2	VMNet2
+NetAdapters 3	: VMNet3	VMNet3
+NetAdapters 4	: BRIDGED	BRIDGED
+
+UTM-JP				BLDG-JP
+NetAdapters	: NAT		VMNet4
+NetAdapters 2	: VMNet2
+NetAdapters 3	: VMNet3
+
+
+firewall
+1. traffic filtering (ACL,ZBF)
+2. transport security (VPN,DMVPN,ZTNA)
+3. Threat Prevention (NGFW)
+4. Network Segmentation (NAT,Proxy, DMZ)
+5. Monitoring, Logging, and Alerts
+=============================
+
+1. traffic filtering (ACL,ZBF)
+task1.Prevent traffic only from Vlan 100
+!@UTM-PH
+config t
+ no ip access-list extended FWP1
+ ip access-list extended FWP1
+  deny ip host 10.31.31.1 host 10.31.1.11 log
+  deny ip host 10.31.1.10 host 10.31.1.11 log
+  permit ip any any
+  exit
+ !
+ int gi 4
+    ip access-group FWP1 in
+  end
+show ip access-list int g4
+
+pornsite add
+66.254.114.238 "redtube"
+66.254.114.41 "pornhub.com"
+66.254.114.234 "Faketaxi"
+104.21.55.88	"pinayflix"
+172.233.219.78 "jabol.tv"
+208.77.20.35 "iyottube.com"
+
+
+!@UTM-PH
+config t
+ no ip access-list standard NoPorn
+ ip access-list standard NoPorn
+	deny  66.254.114.0 0.0.0.255
+	deny host 104.21.55.88 
+	deny host 172.233.219.78 
+	deny host 208.77.20.35 
+  deny host 172.67.146.93
+  permit any
+  exit
+ !
+ int gi 4
+     no ip access-group NoPorn in
+  end
+show ip access-list int g4
+
+
+ping www.thepiratebay.org       162.159.136.6
+ping www.limetorrents.com       104.21.74.130
+ping www.freeanimeonline.com    13.248.169.48
+ping www.torlock2.com           172.67.173.197
+ping www.hentaisites.com        172.67.173.147
+ping www.iptorrents.com         5.253.85.53
+!@UTM-PH
+config t
+ no ip access-list standard NOTORENT
+ ip access-list standard NOTORENT
+	deny  66.254.0.0 0.0.255.255
+	deny  162.159.0.0 0.0.255.255
+	deny  104.21.0.0 0.0.255.255
+	deny  13.248.0.0 0.0.255.255
+  deny  172.67.0.0 0.0.255.255
+  deny  172.67.0.0 0.0.255.255
+  deny  5.253.0.0 0.0.255.255
+  permit any
+  exit
+ !
+ int gi 1
+    no ip access-group NOTORENT in
+  end
+show ip access-list int g1
+
+
+=============================
+win+r
+c:\Windows\System32\drivers\etc
+open host file @ notepad
+        add this 2
+208.8.8.11 bet11.com
+208.8.8.100 bet100.com
+
+ !@UTM-PH       
+config t
+ no ip access-list extended FWP10
+ ip access-list extended FWP10
+	permit tcp any host www.bet11.com eq 22 log
+	permit icmp any host www.bet11.com log
+	permit tcp any host www.bet11.com eq 5060
+	permit tcp any host www.bet11.com eq 2000
+	permit tcp any host www.bet11.com eq 53 log
+  exit
+ !
+conf t
+ int gi 1
+     ip access-group FWP10 in
+  end
+show ip access-list int g1
+=======================================================
+        telnet,ftp,smtp,mysql,http,https
+config t
+ no ip access-list extended FWP11
+ ip access-list extended FWP11
+	permit tcp any host www.bet11.com eq 22 log
+	permit tcp any host www.bet11.com eq 21 log
+	permit tcp any host www.bet11.com eq 3306 log
+	permit tcp any host www.bet11.com eq 80 log
+	permit tcp any host www.bet11.com eq 443 log
+	 
+  exit
+ !
+ int gi 1
+    ip access-group FWP11 in
+  end
+show ip access-list int g1
+=======================================================
+       SIP,SSH,HTTPS,DNS,SUBMISSION,IMAPS,POP3S,SMTPS,SNMP
+config t
+ no ip access-list extended FWP11
+ ip access-list extended FWP11
+	permit tcp any host www.bet11.com eq 5060 log
+	permit tcp any host www.bet11.com eq 22 log
+	permit tcp any host www.bet11.com eq 443 log
+	permit tcp any host www.bet11.com eq 53 log
+	permit tcp any host www.bet11.com eq 587 log
+  permit tcp any host www.bet11.com eq 143 log
+	permit tcp any host www.bet11.com eq 110 log
+	permit tcp any host www.bet11.com eq 25 log
+	permit tcp any host www.bet11.com eq 161 log
+  permit tcp any host www.bet11.com eq 162 log
+	 
+  exit
+ !
+conf t
+ int gi 1
+    ip access-group FWP11 in
+  end
+show ip access-list int g1
+        
+        
+
+2. transport security (VPN,DMVPN,ZTNA)
+3. Threat Prevention (NGFW)
+4. Network Segmentation (NAT,Proxy, DMZ)
+5. Monitoring, Logging, and Alerts
